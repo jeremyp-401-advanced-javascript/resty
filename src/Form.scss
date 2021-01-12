@@ -1,0 +1,123 @@
+$formElementWidth: 90%;
+
+@mixin label-text {
+  color: black;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+@mixin fieldset-normal {
+  display: block;
+  margin: 10px auto;
+  width: $formElementWidth;
+  box-shadow: /* X Y Blur Color */
+  min(.5vmin) min(.5vmin) min(.5vmin) rgba(0, 0, 0, .8);
+}
+
+@mixin fieldset-legend {
+  display: block;
+  margin-left: 5px;
+  padding: 2px;
+  @include label-text;
+}
+
+@mixin fieldset-border {
+  border: 1px solid #222;
+  border-radius: 10px;
+}
+
+#root #resty {
+  margin: 0 auto;
+  width: 80vw;
+  height: 65vh;
+  min-width: 400px;
+  padding-top: max(40px, min(80px, 10vh));
+  
+  #restyForm {
+    background-color: rgba(143, 186, 188, 0.90);
+    border-radius: 10px;
+    min-height: 400px;
+    padding-top: max(40px, min(80px, 10vh));
+    padding: 20px;
+
+    #restyUrlFields {
+      legend {
+        @include fieldset-legend;
+      }
+      @include fieldset-normal;
+      @include fieldset-border;
+      min-height: 50px;
+      max-height: 100px;
+      padding: 1.2vh;
+
+      label {
+        line-height: 275%;
+        white-space: nowrap;
+        @include label-text;
+        span {
+          display: inline-block;
+          width: 50px;
+          padding-right: 10px;
+        }
+        input#restyUrlInput {
+          display: block;
+          font-size: 100%;
+          width: 100%;
+          line-height: 110%;
+          background-color: rgba(255, 255, 255, .2);
+          padding-left: 10px;
+          border-radius: 5px;
+          clear: both;
+        }
+        #submitButton {
+          float: right;
+          margin-top: 1.2vh;
+          font-weight: bold;
+          line-height: 200%;
+          border: 1px solid #222;
+          border-radius: 5px;
+          cursor: pointer;
+          :hover {
+            background-color: azure;
+          }
+        }
+      }
+      
+    }
+
+    #restyMethodFields {
+      legend {
+        @include fieldset-legend;
+      }
+      @include fieldset-normal;
+      @include fieldset-border;
+      margin-top: 1vh;
+
+
+      label {
+        display: block;
+        width: 25%;
+        padding: 10px 5px 15px;
+        float: left;
+        @include label-text;
+        white-space: nowrap;
+        padding-left: 5px;
+        padding-right: 15px;
+        width: 25%;
+      }
+    }
+
+    #restyResultsFields {
+      legend {
+        @include fieldset-legend;
+      }
+      @include fieldset-normal;
+      @include fieldset-border;
+      textarea {
+        padding: 5px;
+        width: 100%;
+        height: 35vh;
+      }
+    }
+  }
+}

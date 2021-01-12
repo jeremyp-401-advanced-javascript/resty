@@ -1,0 +1,18 @@
+#root footer {
+  margin: 0;
+  color: white;
+  height: max(20px, min(40px, 5vh));
+  background-color: rgba($color: #222, $alpha: 0.8);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-top: max(80px, min(160px, 20vh));
+
+  p {
+    display: inline;
+    padding-left: 20px;
+    font-size: max(10px, min(20px, 2.5vh));
+    font-weight: bold;
+    line-height: max(20px, min(40px, 5vh));
+  }
+}
