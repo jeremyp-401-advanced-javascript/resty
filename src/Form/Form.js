@@ -1,4 +1,5 @@
 import React from 'react';
+import Results from '../Results/Results';
 
 import './Form.scss';
 
@@ -6,9 +7,11 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      displayResults: false,
       url: ``,
       method: ``,
-      results: ``,
+      result: [],
+      headers: []
     };
   }
 
@@ -22,14 +25,35 @@ class Form extends React.Component {
     this.setState({ method: newMethod });
   }
 
-  handleClick = (event) => {
-    event.preventDefault();
-    if (this.state.url && this.state.method) {
-      let newResult = `${this.state.method} ${this.state.url}`;
-      let newResultSet = `${newResult}
-${this.state.results}`;
-      this.setState({ results: newResultSet });
-    }
+  prepResults = e => {
+      e.preventDefault();
+      this.getResults();
+      this.setState({ displayResults: true })
+  }
+
+  getResults = async (e) => {
+    const url = this.state.url;
+    const method = this.state.method;
+
+    let headers = {};
+
+    const result = await fetch(url, { method: method, mode: 'cors' })
+      .then(response => {
+        if (response.status === 200) {
+          for (var pair of response.headers.entries()) {
+            headers[pair[0]] = pair[1];
+          }
+          return response.json();
+        } else {
+          return;
+        }
+      });
+    let resultObj = {};
+    resultObj.count = Object.keys(result).length;
+    resultObj.result = result;
+
+    this.setState({ result: resultObj });
+    this.setState({ headers: headers });
   }
 
   render() {
@@ -41,7 +65,7 @@ ${this.state.results}`;
             <label for="restyUrl">
               <input type="text" id="restyUrlInput" name="restyUrl"
               placeholder="Enter a URL..." autoFocus onBlur={ this.handleUrl }></input>
-              <button onClick={ this.handleClick } id='submitButton'>Go!</button>
+              <button onClick={ this.prepResults } id='submitButton'>Go!</button>
             </label>
           </fieldset>
           <fieldset id='restyMethodFields' onChange={ this.handleMethod }>
@@ -63,10 +87,14 @@ ${this.state.results}`;
                 <span>DELETE</span>
               </label>
           </fieldset>
-          <fieldset id='restyResultsFields'>
-            <legend>Results:</legend>
-              <textarea value={ this.state.results } readOnly></textarea>
-          </fieldset>
+          {!this.state.displayResults ? '' :
+            <Results
+              url={this.state.url}
+              method={this.state.method}
+              result={this.state.result}
+              headers={this.state.headers}
+            />
+          }
         </form>
       </div>
     )

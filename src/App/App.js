@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './Header';
-import Form from './Form';
-import Footer from './Footer';
+import Header from '../Header/Header';
+import Form from '../Form/Form';
+import Footer from '../Footer/Footer';
 
 import './App.scss';
 import './reset.scss';
