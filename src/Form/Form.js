@@ -10,8 +10,8 @@ class Form extends React.Component {
       displayResults: false,
       url: ``,
       method: ``,
-      result: [],
-      headers: []
+      result: {},
+      headers: {}
     };
   }
 
