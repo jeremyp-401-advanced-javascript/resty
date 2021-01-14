@@ -73,18 +73,22 @@ class Form extends React.Component {
               <label for="restyGet">
                 <input type="radio" id="restyGet" name="restyMethod" value="GET"></input>
                 <span>GET</span>
+                {/* For a GET I don't think I need to do anything special. */}
               </label>
               <label for="restyPost">
                 <input type="radio" id="restyPost" name="restyMethod" value="POST"></input>
                 <span>POST</span>
+                {/* For a POST I need to show an input box to add in some JSON to send with my request */}
               </label>
               <label for="restyPut">
                 <input type="radio" id="restyPut" name="restyMethod" value="PUT"></input>
                 <span>PUT</span>
+                {/* For a PUT I need to show an input box to add in some JSON to send with my request */}
               </label>
               <label for="restyDelete">
                 <input type="radio" id="restyDelete" name="restyMethod" value="DELETE"></input>
                 <span>DELETE</span>
+                {/* For a DELETE I don't think I need to do anything special. */}
               </label>
           </fieldset>
           {!this.state.displayResults ? '' :
