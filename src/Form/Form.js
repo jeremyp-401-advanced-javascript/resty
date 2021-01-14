@@ -1,3 +1,4 @@
+import { get } from 'http';
 import React from 'react';
 import Results from '../Results/Results';
 
@@ -12,7 +13,8 @@ class Form extends React.Component {
       method: ``,
       result: {},
       headers: {},
-      requestBody: {}
+      requestBody: {},
+      requestHistory: []
     };
   }
 
@@ -37,18 +39,58 @@ class Form extends React.Component {
     this.setState({ displayResults: true })
   }
 
+  useHistoryItem = e => {
+    e.preventDefault();
+    // TODO: Need to get the index from a link on the history list on the page.
+    //let historyItemIdx = event.target.value;
+
+    // But for now, I'll just hard code in the first one.
+    let historyItemIdx = 0;
+    // Just for a test
+    let historyList = this.state.requestHistory;
+    let url = historyList[historyItemIdx].url;
+    let requestOptions= historyList[historyItemIdx].requestOptions;
+    
+    this.setState({ url });
+    this.setState({ method: requestOptions.method })
+    this.setState({ displayResults: true })
+
+    this.getResultsFromHistory(e, url, requestOptions);
+  }
+
+  getResultsFromHistory = async (e, url, requestOptions) => {
+    let responseHeaders = {};
+
+    const result = await fetch(url, requestOptions)
+      .then(response => {
+        if (response.status === 200) {
+          // Get headers from the response
+          for (var pair of response.headers.entries()) {
+            responseHeaders[pair[0]] = pair[1];
+          }
+          return response.json();
+        } else {
+          return;
+        }
+      });
+    this.setState({ result: result });
+    this.setState({ headers: responseHeaders });
+  }
+
   getResults = async (e) => {
     const url = this.state.url;
     const method = this.state.method;
     let requestOptions;
     let requestHeaders = { "content-type": "application/json; charset=UTF-8" }
     let responseHeaders = {};
+    let historyItem = [];
 
     let requestBody = this.state.requestBody;
 
     switch (method) {
       case 'GET':
         requestOptions = { method: method, mode: 'cors' };
+
         break;
       case 'POST':
         requestOptions = { method: method, headers: requestHeaders, body: requestBody, mode: 'cors' };
@@ -67,6 +109,15 @@ class Form extends React.Component {
     const result = await fetch(url, requestOptions)
       .then(response => {
         if (response.status === 200) {
+          // If the call was successful, add it to the history.
+          historyItem = {
+            url,
+            requestOptions
+          }
+          let historyList = this.state.requestHistory;
+          historyList.push(historyItem);
+          this.setState({ requestHistory: historyList });
+          // Get headers from the response
           for (var pair of response.headers.entries()) {
             responseHeaders[pair[0]] = pair[1];
           }
@@ -81,6 +132,7 @@ class Form extends React.Component {
   }
 
   render() {
+    console.log(this.state.requestHistory);
     return (
       <div id='resty'>
         <form id='restyForm'>
@@ -89,8 +141,23 @@ class Form extends React.Component {
             <label for="restyUrl">
               <input type="text" id="restyUrlInput" name="restyUrl"
                 placeholder="Enter a URL..." autoFocus onBlur={this.handleUrl}></input>
+              {this.state.requestHistory.length ?
+                <button onClick={this.useHistoryItem} id='historyButton'>History</button>
+                : ''
+              }  
+
               <button onClick={this.prepResults} id='submitButton'>Go!</button>
             </label>
+            <div>
+              {/* TODO: Find a way to create the history list */}
+              {/* {
+              for (item in this.state.historyList) {
+                // append item to <li>{item.url}</li> that will link
+                // to onClick="{this.useHistoryItem}"
+                // we will need value="i"
+              }
+              } */}
+            </div>
           </fieldset>
           <fieldset id='restyMethodFields' onChange={this.handleMethod}>
             <legend>Choose a method:</legend>
