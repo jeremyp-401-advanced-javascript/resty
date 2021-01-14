@@ -110,6 +110,18 @@ $formElementWidth: 90%;
       }
     }
 
+    #restyRequestBody {
+      legend {
+        @include fieldset-legend;
+      }
+      @include fieldset-normal;
+      @include fieldset-border;
+      textarea {
+        width: 100%;
+        padding: 10px;
+      }
+    }
+
     #restyResultsFields {
       legend {
         @include fieldset-legend;
