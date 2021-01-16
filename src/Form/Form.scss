@@ -96,8 +96,29 @@ $formElementWidth: 90%;
             background-color: azure;
           }
         }
+      } 
+    }
+
+    #restyHistoryList {
+      legend {
+        @include fieldset-legend;
       }
-      
+      @include fieldset-normal;
+      @include fieldset-border;
+      margin-top: 1vh;
+
+
+      label {
+        display: block;
+        width: 25%;
+        padding: 10px 5px 15px;
+        float: left;
+        @include label-text;
+        white-space: nowrap;
+        padding-left: 5px;
+        padding-right: 15px;
+        width: 25%;
+      }
     }
 
     #restyMethodFields {

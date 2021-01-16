@@ -2,3 +2,21 @@
   font-size: 14px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* General Text Styles */
+strong {
+  font-family: 'LeagueSpartanMedium', sans-serif;
+  font-weight: bold;
+}
+strong.really {
+  font-family: 'LeagueSpartanBold', sans-serif;
+  font-weight: bold;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}

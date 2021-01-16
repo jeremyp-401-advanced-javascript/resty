@@ -11,5 +11,28 @@
     font-size: max(40px, min(80px, 10vh));
     font-weight: bold;
     line-height: max(60px, min(120px, 15vh));
+    
+    /*
+        Button Reset from Chris Coyier - Adapted
+        https://css-tricks.com/overriding-default-button-styles/
+    */
+    button {
+      display: inline-block;
+      border: none;
+      padding: 0;
+      margin: 0;
+      text-decoration: none;
+      background: white;
+      color: black;
+      font-family: sans-serif;
+      font-size: 1rem;
+      cursor: pointer;
+      text-align: center;
+      transition: background 250ms ease-in-out, 
+                  transform 150ms ease;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
   }
 }
+
