@@ -1,8 +1,23 @@
 $formElementWidth: 90%;
 
+/*///////////////
+/ Content Boxes /
+///////////////*/
+section.contentBox {
+  font-family: LeagueSpartanLight, sans-serif;
+  margin: 0 auto;
+  padding: min(1vw, 10px) min(2vw, 10px);
+  max-width: 980px;
+  z-index: 0;
+}
+
+section.contentBox:last-of-type {
+  margin-bottom: min(4vw, 30px);
+}
+
 @mixin label-text {
   color: black;
-  font-weight: bold;
+  font-family: LeagueSpartanMedium, sans-serif;
   font-size: 120%;
 }
 
@@ -19,6 +34,7 @@ $formElementWidth: 90%;
   margin-left: 5px;
   padding: 2px;
   @include label-text;
+  font-family: LeagueSpartanBold, sans-serif;
 }
 
 @mixin fieldset-border {
@@ -27,10 +43,9 @@ $formElementWidth: 90%;
 }
 
 #root #resty {
-  // width: 80vw;
   height: 65vh;
   min-width: 400px;
-  padding: max(40px, min(80px, 10vh));
+  padding: max(20px, min(40px, 5vh));
   
   #restyForm {
     background-color: rgba(143, 186, 188, 0.92);
@@ -38,9 +53,7 @@ $formElementWidth: 90%;
     min-height: 400px;
     min-width: 500px;
     max-width: 800px;
-    margin: 0 auto;
-    margin-top: max(20px, min(40px, 5vh));
-    margin-bottom: max(40px, min(80px, 10vh));
+    margin: 0 auto max(40px, min(80px, 10vh)) auto;
     padding: 20px 0;
 
     #restyUrlFields {
@@ -72,6 +85,18 @@ $formElementWidth: 90%;
           border-radius: 5px;
           clear: both;
         }
+        #historyButton {
+          float: left;
+          margin-top: 1.2vh;
+          font-weight: bold;
+          line-height: 200%;
+          border: 1px solid #222;
+          border-radius: 5px;
+          cursor: pointer;
+          :hover {
+            background-color: azure;
+          }
+        }
         #submitButton {
           float: right;
           margin-top: 1.2vh;
@@ -84,8 +109,29 @@ $formElementWidth: 90%;
             background-color: azure;
           }
         }
+      } 
+    }
+
+    #restyHistoryList {
+      legend {
+        @include fieldset-legend;
       }
-      
+      @include fieldset-normal;
+      @include fieldset-border;
+      margin-top: 1vh;
+
+
+      label {
+        display: block;
+        width: 25%;
+        padding: 10px 5px 15px;
+        float: left;
+        @include label-text;
+        white-space: nowrap;
+        padding-left: 5px;
+        padding-right: 15px;
+        width: 25%;
+      }
     }
 
     #restyMethodFields {
@@ -110,12 +156,21 @@ $formElementWidth: 90%;
       }
     }
 
-    #restyResultsFields {
+    #restyRequestBody {
       legend {
         @include fieldset-legend;
       }
-      .strong {
-        font-weight: bold;
+      @include fieldset-normal;
+      @include fieldset-border;
+      textarea {
+        width: 100%;
+        padding: 10px;
+      }
+    }
+
+    #restyResultsFields {
+      legend {
+        @include fieldset-legend;
       }
       .react-json-view {
         padding-top: 5px;
