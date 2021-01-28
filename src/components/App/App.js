@@ -4,7 +4,6 @@ import Form from '../Form/Form';
 import Footer from '../Footer/Footer';
 
 import './App.scss';
-import './reset.scss';
 
 class App extends React.Component {
   constructor(props) {

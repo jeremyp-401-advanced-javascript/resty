@@ -1,5 +1,6 @@
 import React from 'react';
 import Results from '../Results/Results';
+import List from "../List/List";
 
 import './Form.scss';
 
@@ -140,18 +141,17 @@ class Form extends React.Component {
           </fieldset>
           <fieldset id="restyHistoryList">
             <legend>History:</legend>
-            <ul id="historyList">
+            <List>
               {this.props.requestHistory.length ?
-                this.props.requestHistory.forEach((histItem, idx) => {
-                  console.log(`histItem at ${idx}`, histItem);
+                this.props.requestHistory.map((histItem, idx) => (
                   <li onClick={() => this.getResultsFromHistory(idx)} key={idx}>
-                    <span><span class="strong">{histItem.requestOptions.method}</span> {histItem.url}</span>
+                    <span class="strong">{histItem.requestOptions.method}</span>&nbsp;<span>{histItem.url}</span>
                   </li>
-                })
+                ))
               :
                 <li>No history to show.</li>
               }
-            </ul>
+            </List>
           </fieldset>
           <fieldset id='restyMethodFields' onChange={this.handleMethod}>
             <legend>Choose a method:</legend>

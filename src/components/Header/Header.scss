@@ -1,0 +1,213 @@
+/*/////////////////
+/ Header and Name /
+/////////////////*/
+
+header {
+  width: 100%;
+  height: min(14.4vmin, 70px);
+  min-width: 380px;
+  background-color: rgba($color: #000, $alpha: 0.80);
+  border-bottom: 1px solid rgba($color: #fff, $alpha: 0.80);
+  cursor: default;
+  z-index: 999;
+
+  #headerText {
+    padding: min(2.4vmin, 9px) min(4vmin, 30px);
+    float: left;
+    min-width: 326px;
+    position: relative;
+    color: ivory;
+
+    #title {
+      font-family: LeagueSpartanBold, sans-serif;
+      font-size: min(9.6vmin, 48px);
+      letter-spacing: -.05em;
+      text-align: left;
+      display: inline;
+      position: relative;
+    }
+    #description {
+      font-family: LeagueSpartanMedium, sans-serif;
+      font-size: min(4.8vmin, 24px);
+      text-align: right;
+      white-space: nowrap;
+      display: inline;
+      top: min(8.25vmin, 38px);
+      position: absolute;
+    }
+  }
+}
+
+/*//////////
+/ Nav Menu /
+//////////*/
+
+#navMenu {
+  position: relative;
+}
+
+/* Nav Button */
+
+#navMenuButton {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  outline: none;
+  outline-offset: none;
+  height: min(14.4vmin, 70px);
+  min-height: 54px;
+  width: min(14.4vmin, 70px);
+  min-width: 54px;
+  float: right;
+  background-color: rgb(143, 186, 188, .80);
+  color: ivory;
+  font-size: min(12.8vmin, 48px);
+  
+  &:hover,
+  &:focus,
+  &.open:hover,
+  &.open:focus {
+    outline: 1px solid #fff;
+    outline-offset: max(-2.5vmin, -16px);
+  }
+  
+  &:active,
+  &.open {
+    outline: none;
+    box-shadow:
+      /* X Y Blur Color */
+      inset 0 0 min(1.5vmin, 11px) rgba(0, 0, 0, 0.75),
+      inset 0 0 min(3vmin, 22px) rgb(0, 0, 0, .9);
+  }
+}
+
+
+/* Nav Menu */
+
+#navMenuItems {
+  display: none;
+  position: absolute;
+  width: min(30vw, 500px);
+  min-width: 380px;
+  right: 0px;
+  top: min(14.4vmin, 70px);
+  max-width: 480px;
+  background-color: rgb(0, 0, 0, .92);
+  font-family: LeagueSpartanBold, sans-serif;
+  font-size: min(3.2vw, 24px);
+  color: white;
+  border-top: 1px solid rgb(36, 36, 36);
+  box-shadow: /* X Y Blur Color */
+    min(-.1vw, -0.64px) min(1vw, 6.4px) min(1vw, 6.4px) rgba(0, 0, 0, 0.8);
+  z-index: 999;
+}
+
+#navMenuItems a {
+  display: block;
+  text-align: center;
+  padding: min(4.8vmin, 18px) min(4.8vmin, 18px);
+  text-decoration: none;
+  color: ivory;
+  border-bottom: 1px solid rgb(36, 36, 36);
+  border-left: 1px solid rgb(36, 36, 36);
+  box-shadow: /* X Y Blur Color */
+    inset 0 0 Min(1.2vw, 9px) rgba(255, 255, 240, 0.5),
+    inset 0 0 Min(.168vw, 1.26px) rgb(0, 0, 0);
+
+  &:hover {
+    box-shadow:
+      /* X Y Blur Color */
+      inset 0 0 Min(2.4vw, 18px) rgba(255, 255, 240, 0.8),
+      inset 0 0 Min(.168vw, 1.26px) rgb(0, 0, 0);
+  }
+}
+
+@media (max-width: 380px), (max-height: 380px) {
+  #navMenuButton {
+    height: 54px;
+    width: 54px;
+    font-size: 48px;
+    
+    &:hover,
+    &:focus,
+    &.open:hover,
+    &.open:focus {
+      outline-offset: -10px;
+    }
+
+    &:active,
+    &.open {
+      box-shadow:
+        /* X Y Blur Color */
+        inset 0 0 1.5vmin rgba(0, 0, 0, 0.75),
+        inset 0 0 3vmin rgb(0, 0, 0, .9);
+    }
+  }
+  #navMenuItems {
+    top: 54px;
+    font-size: 12px;
+    width: 380px;
+    box-shadow: /* X Y Blur Color */
+      -0.32px 3.2px 3.2px rgba(0, 0, 0, 0.8);
+
+    a {
+      padding: 18px 18px;
+      text-decoration: none;
+      box-shadow: /* X Y Blur Color */
+        inset 0 0 4.5px rgba(255, 255, 240, 0.5),
+        inset 0 0 .63px rgb(0, 0, 0);
+
+      &:hover {
+        box-shadow:
+          /* X Y Blur Color */
+          inset 0 0 9px rgba(255, 255, 240, 0.8),
+          inset 0 0 .63px rgb(0, 0, 0);
+      }
+    }
+  }
+}
+
+@media (max-width: 380px) { /* 2.8x smaller than max */
+  #navMenuButton {
+    height: 54px;
+    width: 54px;
+    font-size: 48px;
+
+    &:hover,
+    &:focus,
+    &.open:hover,
+    &.open:focus {
+      outline-offset: -10px;
+    }
+    
+    &:active,
+    &.open {
+      box-shadow:
+        /* X Y Blur Color */
+        inset 0 0 1.5vmin rgba(0, 0, 0, 0.75),
+        inset 0 0 3vmin rgb(0, 0, 0, .9);
+    }
+  }
+  #navMenuItems {
+    top: 54px;
+    font-size: 12px;
+    width: 380px;
+    box-shadow: /* X Y Blur Color */
+      -0.32px 3.2px 3.2px rgba(0, 0, 0, 0.8);
+
+    a {
+      padding: 18px 18px;
+      text-decoration: none;
+      box-shadow: /* X Y Blur Color */
+        inset 0 0 4.5px rgba(255, 255, 240, 0.5),
+        inset 0 0 .63px rgb(0, 0, 0);
+      
+      &:hover {
+        box-shadow:
+          /* X Y Blur Color */
+          inset 0 0 9px rgba(255, 255, 240, 0.8),
+          inset 0 0 .63px rgb(0, 0, 0);
+      }
+    }
+  }
+}

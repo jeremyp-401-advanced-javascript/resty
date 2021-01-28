@@ -1,0 +1,79 @@
+/*///////////////
+/ Footer Styles /
+///////////////*/
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: min(5.6vmin, 30px);
+  min-width: 380px;
+  background-color: rgba(0, 0, 0, 0.85);
+  font-size: min(2.4vmin, 12.5px);
+  color: rgba(255, 255, 240, .90);
+  font-family: LeagueSpartanBold, sans-serif;
+}
+
+footer #footerText {
+  float: left;
+  padding: min(1.7vmin, 9px);
+}
+
+footer #footerLinks {
+  float: right;
+  white-space: nowrap;
+}
+
+footer #footerLinks .footerLink {
+  float: left;
+  line-height: min(5.8vmin, 33px);
+}
+
+footer #footerLinks .footerLink i {
+  font-size: min(3.8vmin, 21.38px);
+  padding-top: Min(.8vmin, 4.5px);
+  padding-right: Min(1.1vmin, 12px);
+  float: left;
+}
+
+footer #footerLinks .footerLink a {
+  float: left;
+  display: block;
+  padding-right: Min(.7vmin, 8px);
+  padding-left: Min(.35vmin, 4px);
+}
+
+footer #footerLinks .footerLink a,
+footer #footerLinks .footerLink a:visited {
+  text-decoration: none;
+  color: ivory;
+}
+
+footer #footerLinks .footerLink a:active,
+footer #footerLinks .footerLink a:hover {
+  text-decoration: underline;
+  color: ivory;
+}
+
+@media (max-width: 380px), (max-height: 380px) {
+  footer {
+    height: 20px;
+    font-size: 9px;
+  }
+  footer #footerText {
+    padding: 6px;
+  }
+  footer #footerLinks .footerLink {
+    line-height: 22px;
+  }
+  footer #footerLinks .footerLink i {
+    font-size: 14.25px;
+    padding-top: 3px;
+    padding-right: 6px;
+  }
+  footer #footerLinks .footerLink a {
+    padding-right: 8px;
+    padding-left: 4px;
+  }
+}
